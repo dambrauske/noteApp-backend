@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const {Types} = require('mongoose')
 
-const sendResponse = (res, errorValue, messagevalue, dataValue) => {
+export const sendResponse = (res, errorValue, messagevalue, dataValue) => {
     res.send({
         error: errorValue,
         message: messagevalue,
@@ -11,7 +11,7 @@ const sendResponse = (res, errorValue, messagevalue, dataValue) => {
     })
 }
 
-const errorLogging = (myError) => {
+export const errorLogging = (myError) => {
     console.error(`Error (${myError.code}): ${myError.message}`)
 }
 
@@ -91,4 +91,16 @@ module.exports = {
             sendResponse(res,true, 'An error occurred', null)
         }
     },
+    // getUser: async (req, res) => {
+    //     const user = req.user
+
+    //     try {
+    //         const userData = await userDb.findOne({_id: user._id}).select('-password -email')
+    //         sendResponse(res, false, 'User found', userData)
+           
+
+    //     } catch (error) {
+    //         errorLogging(error)
+    //         sendResponse(res, true, 'User not found', null)        }
+    // }
 }
