@@ -1,28 +1,33 @@
-const userDb = require('../schemas/UserSchema')
-const noteDb = require('../schemas/NoteSchema')
+const userDb = require("../schemas/UserSchema");
+const noteDb = require("../schemas/NoteSchema");
+const { Types } = require("mongoose");
 
-const {sendResponse, errorLogging} = require('../controllers/userController')
+const { sendResponse, errorLogging } = require("../helperFunctions");
 
 module.exports = {
-    addNote: async (req, res) => {
-        const {title, text, color} = data
+  addNote: async (req, res) => {
+    const { title, text, color } = req.body;
+    const user = req.user;
 
-        const newNote = new noteDb({
-            _id: new Types.ObjectId(),
-            title,
-            text,
-            color,
-        })
+    console.log("data", req.body);
+    console.log("user", user);
 
-        try {
-            await newNote.save()
-            const note = await noteDb.findOne({_id: newNote._id})
+    const newNote = new noteDb({
+      _id: new Types.ObjectId(),
+      user: user._id,
+      title,
+      text,
+      color,
+    });
 
-            sendResponse(res, false, 'Note saved', note)
-
-        } catch (error) {
-            errorLogging(error)
-            sendResponse(res, true, 'An error occurred', null)
-        }
+    try {
+      await newNote.save();
+      const notes = await noteDb.find({ user: user._id });
+      console.log("notes", notes);
+      sendResponse(res, false, "Note saved", notes);
+    } catch (error) {
+      errorLogging(error);
+      sendResponse(res, true, "An error occurred", null);
     }
-}
+  },
+};
