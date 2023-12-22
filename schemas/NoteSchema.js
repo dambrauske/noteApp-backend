@@ -25,5 +25,5 @@ const NoteSchema = new Schema({
 
 })
 
-const Note = mongoose.model('Note', NoteSchema)
+const Note = mongoose.model('notes-app-notes', NoteSchema)
 module.exports = Note

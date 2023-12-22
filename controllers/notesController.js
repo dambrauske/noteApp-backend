@@ -14,7 +14,6 @@ module.exports = {
             color,
         })
 
-
         try {
             await newNote.save()
             const note = await noteDb.findOne({_id: newNote._id})
@@ -25,6 +24,5 @@ module.exports = {
             errorLogging(error)
             sendResponse(res, true, 'An error occurred', null)
         }
-
     }
 }

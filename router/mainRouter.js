@@ -21,9 +21,9 @@ const {
 router.post('/register', register)
 router.post('/login', login)
 router.post('/addNote', validateToken, addNote)
-router.post('/deleteNote', validateToken, deleteNote)
-router.post('/updateNote', validateToken, updateNote)
-router.get('/notes', validateToken, getNotes)
+// router.post('/deleteNote', validateToken, deleteNote)
+// router.post('/updateNote', validateToken, updateNote)
+// router.get('/notes', validateToken, getNotes)
 router.get('/user', validateToken, getUser)
 
 module.exports = router

@@ -23,7 +23,7 @@ app.use('/', router)
 
 const port = 8000
 
-app.listen(portApp, () => {
+app.listen(port, () => {
     console.log('Express app running at http://localhost:' + port)
 })
 

@@ -1,3 +1,4 @@
+const sendResponse = require('../helperFunctions')
 const jwt = require('jsonwebtoken')
 
 module.exports = {
@@ -6,7 +7,7 @@ module.exports = {
 
         jwt.verify(token, process.env.JWT_SECRET, (error, data) => {
             if (error) {
-                return res.send({error: true, message: 'token error', data: null})
+                return sendResponse(res, true, "Token error", null)
             }
 
             req.user = data

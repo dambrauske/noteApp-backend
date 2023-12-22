@@ -16,5 +16,5 @@ const UserSchema = new Schema({
     }
 })
 
-const User = mongoose.model('User', UserSchema)
+const User = mongoose.model('notes-app-users', UserSchema)
 module.exports = User
